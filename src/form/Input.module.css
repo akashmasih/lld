@@ -1,0 +1,24 @@
+.input {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: all 2.s ease-in-out;
+}
+
+.input:focus {
+    border-color: #0070f3;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}

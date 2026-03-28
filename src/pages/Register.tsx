@@ -27,11 +27,9 @@ function Register() {
             const newError = error.response?.data?.data?.body
 
             if (!newError) {
-                l
                 toast.error(error.response?.data?.message)
             }
             else {
-                l
                 for (let key in newError) {
                     if (key !== "_errors") {
                         setErrors((prev) => ({

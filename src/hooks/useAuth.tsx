@@ -1,25 +1,26 @@
 import React, { createContext, useContext } from "react";
-import type { AuthContextTypes, LoginResponse } from "../types/auth.types";
+import type { AuthContextTypes, LoginResponseData } from "../types/auth.types";
 import { useLocalStorage } from "./useLocalStorage";
 
 export const AuthContext = createContext<AuthContextTypes | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = useLocalStorage<Partial<LoginResponse>>("user", {})
+    const [user, setUser] = useLocalStorage<LoginResponseData | null>("user", null)
 
-    const login = (data: LoginResponse) => {
+    const login = (data: LoginResponseData) => {
         setUser(data)
+        location.href = "/"
     }
-
+    console.log(user)
     const logout = () => {
-        setUser({})
+        setUser(null)
+        location.href = "/login"
     }
-    const isAuthentication = !!(user?.user?.email && user?.accessToken)
-
+    const isAuthentication = (user?.user?.email && user?.tokens?.accessToken)
     return (
-        <AuthContext value={{ user: user.user, token: user.accessToken, login, logout, isAuthentication }}>
+        <AuthContext.Provider value={{ user: user?.user, token: user?.tokens?.accessToken, login, logout, isAuthentication }}>
             {children}
-        </AuthContext>
+        </AuthContext.Provider>
     )
 
 }

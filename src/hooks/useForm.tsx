@@ -121,7 +121,9 @@ const useForm = <I extends Record<string, unknown>>(prams: UseFormPrams<I>) => {
     return {
         register,
         handleSubmit,
-        errors
+        errors,
+        values: formValue,
+        setErrors
     }
 }
 export default useForm

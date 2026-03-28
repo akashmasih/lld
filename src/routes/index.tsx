@@ -1,29 +1,31 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Outlet } from "react-router";
 import RootLayout from "../layouts/RootLayout";
-import Home from "../pages/Home";
 import About from "../pages/About";
 import UserForm from "../pages/UserForm";
 import '../App.css'
-import AuthLayout from "../layouts/AuthLayout";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
+import PublicRoute from "../middleware/PublicRoute";
+import ProtectedRoute from "../middleware/ProtectedRoute";
 
 
 export const router = createBrowserRouter([
     {
         path: '/',
-        Component: RootLayout,
+        element: <ProtectedRoute> <RootLayout /></ProtectedRoute>,
         children: [
-            { index: true, Component: Home },
+            { index: true, Component: Dashboard },
             { path: 'about', Component: About },
             { path: 'user-form', Component: UserForm },
         ],
-
     },
     {
-        path: 'admin',
-        Component: AuthLayout,
-        children: [
-            { index: true, Component: Dashboard }
-        ]
+        path: 'login',
+        element: <PublicRoute><Login /></PublicRoute>
+    },
+    {
+        path: 'register',
+        element: <PublicRoute><Register /></PublicRoute>
     }
 ])

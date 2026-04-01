@@ -1,7 +1,7 @@
 
-import Input from '../form/Input.tsx'
-import useForm from '../hooks/useForm.tsx'
-import Select from '../form/Select.tsx'
+import Input from '../shared/ui/Input.tsx'
+import useForm from '../shared/hooks/useForm.tsx'
+import Select from '../shared/ui/Select.tsx'
 
 
 type userData = {

@@ -1,4 +1,4 @@
-import api from "../services/api";
+import api from "../../../lib/api";
 import type { LoginBody, RegisterBody } from "../types/auth.types";
 
 function login(data: LoginBody) {

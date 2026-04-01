@@ -45,9 +45,9 @@ const resolveError = (type: ErrorTypes, message: string): Error => {
 
 
 
-const useForm = <I extends Record<string, unknown>>(prams: UseFormPrams<I>) => {
+const useForm = <I extends Record<string, any>>(prams: UseFormPrams<I>) => {
     const { defaultValues } = prams
-    const [formValue, setFormValue] = useState<I>(defaultValues)
+    const [formValue, setFormValue] = useState<I>(defaultValues as I)
     const [errors, setErrors] = useState<Record<string, Partial<Error>>>({})
     const registerOPtionsRef = useRef<Record<string, Partial<RegisterOPtions>>>({})
 
@@ -107,14 +107,18 @@ const useForm = <I extends Record<string, unknown>>(prams: UseFormPrams<I>) => {
         setFormValue(newValues)
     }
 
-    const register = (name: string, options?: RegisterOPtions) => {
+    const register = <K extends keyof I>(
+        name: K,
+        options?: RegisterOPtions
+    ) => {
         if (options) {
-            registerOPtionsRef.current[name] = options
+            registerOPtionsRef.current[name as string] = options
         }
+
         return {
             name,
             onChange,
-            value: (formValue as Record<string, unknown>)[name]
+            value: formValue[name]
         }
     }
 

@@ -1,13 +1,10 @@
 import { createBrowserRouter, Outlet } from "react-router";
-import RootLayout from "../layouts/RootLayout";
-import About from "../pages/About";
-import UserForm from "../pages/UserForm";
-import '../App.css'
+import RootLayout from "../shared/layouts/RootLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
-import PublicRoute from "../middleware/PublicRoute";
-import ProtectedRoute from "../middleware/ProtectedRoute";
+import PublicRoute from "../shared/hoc/PublicRoute";
+import ProtectedRoute from "../shared/hoc/ProtectedRoute";
 
 
 export const router = createBrowserRouter([
@@ -16,8 +13,6 @@ export const router = createBrowserRouter([
         element: <ProtectedRoute> <RootLayout /></ProtectedRoute>,
         children: [
             { index: true, Component: Dashboard },
-            { path: 'about', Component: About },
-            { path: 'user-form', Component: UserForm },
         ],
     },
     {

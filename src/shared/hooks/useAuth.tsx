@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import type { AuthContextTypes, LoginResponseData } from "../types/auth.types";
+import type { AuthContextTypes, LoginResponseData } from "../../features/auth/types/auth.types";
 import { useLocalStorage } from "./useLocalStorage";
 
 export const AuthContext = createContext<AuthContextTypes | undefined>(undefined)
